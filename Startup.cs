@@ -10,7 +10,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
+using Card;
+using Card.Services;
+using Card.Controllers;
+ 
 namespace vaivoa_challenge {
   public class Startup {
     public Startup(IConfiguration configuration) {
@@ -19,7 +24,14 @@ namespace vaivoa_challenge {
     public IConfiguration Configuration { get; }
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services) {
-      services.AddControllers();
+      services.AddEntityFrameworkNpgsql()
+      .AddDbContext<CardContext>(options => options.UseNpgsql(
+        Configuration.GetConnectionString("BaseCards")
+      ));
+
+      services.AddControllers().AddNewtonsoftJson();
+      services.AddScoped<ICardsRepository, CardsRepository>();
+
     }
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
