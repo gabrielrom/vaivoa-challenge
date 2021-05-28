@@ -31,10 +31,8 @@ dotnet run
 This command run the application.
 
 ## Routes
-The application is running on port 3333
-```sh
-http://localhost:3333
-```
+The application is running on http://localhost:3333
+
 * POST: running on route /cards, this route needs of a email body param.
 ```sh
 {
