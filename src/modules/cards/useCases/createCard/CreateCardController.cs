@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 using Card.Services;
+using Card.Error;
 
 namespace Card.Controllers {
   public class RequestBody {
@@ -21,9 +22,16 @@ namespace Card.Controllers {
 
     [HttpPost]
     public object handle([FromBody] RequestBody request) {
-      Card card = _createCardUseCase.execute(Convert.ToString(request.email));
-      return StatusCode(201, card);
+      try {
+        Card card = _createCardUseCase.execute(request.email);
+        
+        return StatusCode(201, card);
+      } catch(Exception err) {
+        AppError errorFormated = new AppError(err.Message);
+
+        return StatusCode(errorFormated.statusCode, errorFormated);
+      }
     }
 
   }
-}
+} 
