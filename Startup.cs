@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Card;
 using Card.Services;
 using Card.Controllers;
+using Card.Middleware;
  
 namespace vaivoa_challenge {
   public class Startup {
@@ -42,6 +43,8 @@ namespace vaivoa_challenge {
 
       app.UseHttpsRedirection();
       app.UseRouting();
+      
+      app.UseMiddleware<ErrorHandlerMiddleware>();
       app.UseAuthorization();
 
       app.UseEndpoints(endpoints => {

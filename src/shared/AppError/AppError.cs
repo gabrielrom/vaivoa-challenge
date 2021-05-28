@@ -1,7 +1,7 @@
 using System;
 
 namespace Card.Error {
-  public class AppError {
+  public class AppError : Exception {
     public string messageError {get; private set;}
     public int statusCode { get; private set;}
 

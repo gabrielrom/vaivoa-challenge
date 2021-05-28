@@ -23,9 +23,9 @@ namespace Card.Services {
       string[] emailSplited = email.Split('@');
 
       if (String.IsNullOrEmpty(email)) {
-        throw new Exception("You cannot create a credit card number without an email!");
+        throw new AppError("You cannot create a credit card number without an email!");
       } else if (!email.Contains('@') || String.IsNullOrEmpty(emailSplited[1]) || !email.Contains(".com")) {
-        throw new Exception("This email is invalid!");
+        throw new AppError("This email is invalid!");
       }
       
       string creditCardNumber = generateCreditCarNumber();

@@ -22,15 +22,8 @@ namespace Card.Controllers {
 
     [HttpPost]
     public object handle([FromBody] RequestBody request) {
-      try {
-        Card card = _createCardUseCase.execute(request.email);
-        
-        return StatusCode(201, card);
-      } catch(Exception err) {
-        AppError errorFormated = new AppError(err.Message);
-
-        return StatusCode(errorFormated.statusCode, errorFormated);
-      }
+      Card card = _createCardUseCase.execute(request.email);
+      return StatusCode(201, card);
     }
 
   }
