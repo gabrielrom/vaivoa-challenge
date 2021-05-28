@@ -8,7 +8,7 @@ namespace Card.Services {
       _cardsRepository = cardsRepository;
     }
 
-    private static string generateCreditCarNumber () {
+    private static string generateCreditCardNumber () {
       Random rnd = new Random();
 
       string creditCardNumber = "";
@@ -28,7 +28,7 @@ namespace Card.Services {
         throw new AppError("This email is invalid!");
       }
       
-      string creditCardNumber = generateCreditCarNumber();
+      string creditCardNumber = generateCreditCardNumber();
 
       Card card = _cardsRepository.create(email, creditCardNumber);
 
