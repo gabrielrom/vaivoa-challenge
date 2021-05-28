@@ -17,7 +17,7 @@
 * .NET Core SDK (3.1)
 
 ## Advices
-This application is using Docker and Docker Compose to create a container with postgres database, so you dont need to have installed on your computer posgres.
+This application is using Docker and Docker Compose to create a container with postgres database, so you dont need to have installed on your computer postgres.
 
 ## Run application
 ```sh
